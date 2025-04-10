@@ -15,7 +15,7 @@ const Land = () => {
         <div className='Lpage'>
             <div className='container'>
                 <div className="menu">
-                    <button className='btn' title='clickme'><img src='./home.png' alt='menu' className='mng' width={40} height={40}></img></button>
+                    <button className='btn' title='home'><img src='./home.png' alt='menu' className='mng' width={40} height={40}></img></button>
                 </div>
                 <div className="brand">HoardStore</div>
                 <div className="sides">

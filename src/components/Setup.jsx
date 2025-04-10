@@ -56,7 +56,7 @@ const Setup = () => {
             })
         }
         else{
-            let res=await fetch("http://localhost:3000/datasub",{method:"POST",body:JSON.stringify(bform),headers:{'Content-Type':'application/json'}})
+            let res=await fetch(`${process.env.REACT_APP_API_URL}/datasub`,{method:"POST",body:JSON.stringify(bform),headers:{'Content-Type':'application/json'}})
             // const res=await req.json()
             if(res.ok){
                 toast.success("Form submitted Successfully",{

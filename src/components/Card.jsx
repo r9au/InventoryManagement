@@ -28,7 +28,7 @@ const Card = () => {
       Object.keys(card).forEach((key)=>{
         formdata.append(key,card[key])
       })
-      let res= await fetch(`http://localhost:3000/workspace/${id}/addcard`,{method:'POST',body:formdata})
+      let res= await fetch(`${process.env.REACT_APP_API_URL}/workspace/${id}/addcard`,{method:'POST',body:formdata})
       if(res.ok){
          let upwork= await res.json()
          navigate(`/Workspace/${upwork.Userid}`)

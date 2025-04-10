@@ -10,7 +10,7 @@ const Login = () => {
     }
     const Auth=async()=>{
         console.log(frm)
-        let res= await fetch("http://localhost:3000/Auth",{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(frm)})
+        let res= await fetch(`${process.env.REACT_APP_API_URL}/Auth`,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(frm)})
         if(res.ok){
             const resp= await res.json()
             localStorage.setItem("User_id",resp.user_id)

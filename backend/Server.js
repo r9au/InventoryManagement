@@ -87,6 +87,8 @@ app.get("/workspace/:userid", async (req, res) => {
         if (!workspace) {
             return res.status(200).json({ userid: userid, cards: "No item added in inventory" })
         }
+        const upcrd=workspace.Cards.filter(card=>new Date(card.Exp)-Date.now()>0)
+        workspace.Cards=upcrd
         workspace.Cards.sort((cardA, cardB) => { return new Date(cardA.Exp) - new Date(cardB.Exp) })
         return res.status(200).json(workspace)
     } catch (err) {

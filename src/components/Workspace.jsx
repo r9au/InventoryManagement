@@ -17,12 +17,12 @@ const Workspace = () => {
   }
   const [workspace, setworkspace] = useState(null)
   const fetchspace = async () => {
-    let res = await fetch(`http://localhost:3000/workspace/${userId}`)
+    let res = await fetch(`${process.env.REACT_APP_API_URL}/workspace/${userId}`)
     const space = await res.json();
     setworkspace(space)
   }
   const delitem = async (Name) => {
-    let res = await fetch(`http://localhost:3000/workspace/${userId}/delcard`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body:JSON.stringify({Name:Name})})
+    let res = await fetch(`${process.env.REACT_APP_API_URL}/workspace/${userId}/delcard`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body:JSON.stringify({Name:Name})})
     if (res.ok) {
       const msg = await res.json();
       toast.success(`${msg.success}`)
@@ -35,11 +35,11 @@ const Workspace = () => {
   useEffect(() => {
     fetchspace();
   }, [userId])
-  useEffect(() => {
-    if(userId){
-      sendmail()
-    }
-  }, [userId])
+  // useEffect(() => {
+  //   if(userId){
+  //     sendmail()
+  //   }
+  // }, [userId])
   useEffect(()=>{
     expref.current.forEach((ref,index)=>{
       const card=workspace.Cards[index];
@@ -108,7 +108,7 @@ const Workspace = () => {
       {workspace?.Cards?.length > 0 ? (<div className='tank'>
         {workspace.Cards.map((Card, index) => (
           <div className="space" key={index}>
-            <div className="capn"><img src={`http://localhost:3000/${Card.snap.startsWith("deficon.jpg") ? "public" : "uploads"}/${Card.snap}`} alt={"item image"} className='Snap'></img></div>
+            <div className="capn"><img src={`${process.env.REACT_APP_API_URL}/${Card.snap.startsWith("deficon.jpg") ? "public" : "uploads"}/${Card.snap}`} alt={"item image"} className='Snap'></img></div>
             <div className="details">
               <div className="name">{Card.Name}</div>
               <div className="amt">Amount-{Card.Amount}</div>
